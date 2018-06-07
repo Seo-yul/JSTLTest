@@ -1,0 +1,28 @@
+@charset "UTF-8";
+body {
+	width: -webkit-fill-available;
+	height: auto;
+}
+
+.container {
+	width: -webkit-fill-available;
+	height: auto;
+}
+
+table, tr, th, td {
+	table-layout: auto;
+	text-align: center;
+	margin: 0px;
+	padding: 2px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td {
+	text-align: left;
+}
+.checkidbtn{
+	height: 26px;
+}
+.input-nomal{
+	width: -webkit-fill-available;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.MemberMapper">
+	<insert id="insertMember" parameterType="Member">
+		Insert into members (USERID, USERPW, USERNAME, GENDER, HOBBY, BIRTH, AGE, PHONE, ADDRESS, INTRODUCE)
+		VALUES (#{userId}, #{userPwd}, #{userName}, #{gender}, #{hobby}, #{birth}, #{age}, #{phone}, #{address} ,#{introduce})
+	</insert>
+
+	 <select id="selectMember" parameterType="Member" resultType="Member">
+	select userId, userPw, userName
+	from member
+	where ( ( userId = #{userId} )and ( userPw = #{userPw} ) )
+	</select>
+	<!--
+	<update id="##" parameterType="##">
+	UPDATE ## SET
+		## = #{##},
+		## = #{##}
+	where ## = #{##}
+	</update>
+	
+	<delete id="##" parameterType="##" >
+	Delete ## 
+	where ##=#{##}
+	</delete>
+
+	 -->
+</mapper>
