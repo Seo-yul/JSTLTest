@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>ServerletOne</display-name>
+
+	<servlet>
+		<servlet-name>JSTLTest</servlet-name> <!-- 원하는 이름 -->
+		<servlet-class>servlet.JSTLServlet</servlet-class> <!-- 실제 클래스파일 위치 -->
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JSTLTest</servlet-name> <!-- 위에서 명명한 서블릿 네임 -->
+		<url-pattern>/test</url-pattern> <!-- 어떤 패턴일때 보낼것이냐 -->
+	</servlet-mapping>
+	
+</web-app>
