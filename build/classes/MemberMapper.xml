@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dao.MemberMapper">
 	<insert id="insertMember" parameterType="Member">
-		Insert into members (USERID, USERPW, USERNAME, GENDER, HOBBY, BIRTH, AGE, PHONE, ADDRESS, INTRODUCE)
+		Insert into members (USERID, USERPWD, USERNAME, GENDER, HOBBY, BIRTH, AGE, PHONE, ADDRESS, INTRODUCE)
 		VALUES (#{userId}, #{userPwd}, #{userName}, #{gender}, #{hobby}, #{birth}, #{age}, #{phone}, #{address} ,#{introduce})
 	</insert>
 
 	 <select id="selectMember" parameterType="Member" resultType="Member">
-	select userId, userPw, userName
-	from member
-	where ( ( userId = #{userId} )and ( userPw = #{userPw} ) )
+	select userId, userPwd, userName, gender, hobby, birth, age, address, phone, introduce
+	from members
+	where ( userId = #{userId} and userPwd = #{userPwd} )
 	</select>
 	<!--
 	<update id="##" parameterType="##">

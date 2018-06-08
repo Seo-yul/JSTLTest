@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MemberDAO;
 import vo.Member;
@@ -24,6 +27,7 @@ public class MemberServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
 		String action = req.getParameter("action");
 		
 		if(action.equals("join")){
@@ -38,8 +42,8 @@ public class MemberServlet extends HttpServlet {
 		for(int i=0; i<h.length; i++)
 			hobby += h[i] + " " ;
 		
-		String birth = req.getParameter("birth");
-		int age = Integer.parseInt(req.getParameter("age"));
+		Timestamp birth =Timestamp.valueOf(req.getParameter("birth"));
+		String age = req.getParameter("age");
 		String phone = req.getParameter("phone1") + req.getParameter("phone2");
 		String address = req.getParameter("addr1") + req.getParameter("addr2");
 		String introduce = req.getParameter("introduce");
@@ -49,31 +53,33 @@ public class MemberServlet extends HttpServlet {
 		dao.insertMember(member);
 		
 		}
-		if(action.equals("action")){
-			String userId = req.getParameter("userId");
-			String userPw = req.getParameter("userPw");
+		
+		else if(action.equals("login")){
 			
+			System.out.println("action : login");
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPw");
+			System.out.println(userId+" "+userPwd);
 			MemberDAO dao = new MemberDAO();
-			Member member = new Member(userId, userPw, null, null, null, null, 0, null, null, null);
+			Member member = new Member(userId, userPwd, null, null, null, null, null, null, null, null);
+			
 			member = dao.selectMember(member);
-
+			System.out.println(member.toString());
 			
 			if(member!=null) {
 				userId = member.getUserId();
-				userPw = member.getUserPwd();
+				userPwd = member.getUserPwd();
 				String userName = member.getUserName();
 				String gender = member.getGender();
 				String hobby = member.getHobby();
-				String birth = member.getBirth();
-				int age = member.getAge();
+				String birth = member.getBirth().toString();
+				String age = member.getAge();
 				String address = member.getAddress();
 				String phone = member.getPhone();
 				String introduce = member.getIntroduce();
 				
-				System.out.println(member);
-				
 				req.setAttribute("userId", userId);
-				req.setAttribute("userPw", userPw);
+				req.setAttribute("userPw", userPwd);
 				req.setAttribute("userName", userName);
 				req.setAttribute("gender", gender);
 				req.setAttribute("hobby", hobby);
@@ -82,6 +88,10 @@ public class MemberServlet extends HttpServlet {
 				req.setAttribute("address", address);
 				req.setAttribute("phone", phone);
 				req.setAttribute("introduce", introduce);
+				
+				session.setAttribute("loginId", userId);
+				session.setAttribute("loginName", userName);
+			
 				
 				
 				RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");

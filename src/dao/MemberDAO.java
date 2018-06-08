@@ -32,7 +32,7 @@ public class MemberDAO {
 	
 	public Member selectMember(Member member) {
 		SqlSession session = null;
-		Member members ;
+		Member members = null ;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);

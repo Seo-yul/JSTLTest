@@ -34,30 +34,30 @@
 </tr>
 <tr>
 <th>취미 : </th>
-<td colspan="2"><input type="checkbox" name="hobby" value="reading">독서
-				<input type="checkbox" name="hobby" value="fishing">낚시
-				<input type="checkbox" name="hobby" value="sleeping">잠자기
-				<input type="checkbox" name="hobby" value="watching">TV시청</td>
+<td colspan="2"><input type="checkbox" name="hobby" value="독서">독서
+				<input type="checkbox" name="hobby" value="낚시">낚시
+				<input type="checkbox" name="hobby" value="잠자기">잠자기
+				<input type="checkbox" name="hobby" value="TV시청">TV시청</td>
 </tr><tr><th>생일 : </th>
 <td colspan="2"><input type = "date" class="input-nomal"  name = "birth"></td>
 </tr><tr><th>나이 : </th>
 <td colspan="2"><input type = "number" class="input-nomal" name = "age"></td>
 </tr><tr><th>전화번호 : </th>
 <td class="wsize"><select name = "phone1">
-				<option value="gangnam">010</option>
-  				<option value="dongjack">011</option>
-  				<option value="songpa">017</option>
-  				<option value="jongro">018</option>
-  				<option value="gangdonggu">019</option>
+				<option value="010">010</option>
+  				<option value="011">011</option>
+  				<option value="017">017</option>
+  				<option value="018">018</option>
+  				<option value="019">019</option>
   				</select></td><td>
 				<input type = "text" class="input-nomal" name = "phone2" placeholder="-없이 숫자"></td>
 </tr><tr><th>주소 : </th>
 <td class="wsize"><select name = "addr1" >
-				<option value="gangnam">강남구</option>
-  				<option value="dongjack">동작구</option>
-  				<option value="songpa">송파구</option>
-  				<option value="jongro">관악구</option>
-  				<option value="gangdonggu">강동구</option>
+				<option value="강남구">강남구</option>
+  				<option value="동작구">동작구</option>
+  				<option value="송파구">송파구</option>
+  				<option value="관악구">관악구</option>
+  				<option value="강동구">강동구</option>
   				</select></td>
 			<td>	<input class="input-nomal"  name = "addr2"></td>
 </tr><tr><th>자기소개 : </th>
