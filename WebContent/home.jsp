@@ -9,9 +9,9 @@
 </head>
 <body>
 <h1>로그인 성공!</h1>
+<c:choose><c:when test="${sessionScope.loginId!=null}">
 ${userName}님 환영합니다.
-<a href="/JSTLTest/board?action=boardList"><h1>게시판가기</h1></a>
-
+<a href="board?action=boardList"><h1>게시판가기</h1></a>
 <h2><c:out value="정보"/></h2>
 <c:out value="아이디: ${userId}"/><br>
 <c:out value="비밀번호: ${userPw}"/><br>
@@ -22,5 +22,9 @@ ${userName}님 환영합니다.
 <c:out value="주소 : ${address}"/><br>
 <c:out value="전화번호 : ${phone}"/><br>
 <c:out value="소개 : ${introduce}"/><br>
+<a href="member?action=logout" ><h1>로그아웃하기</h1></a>
+</c:when></c:choose>
+
+
 </body>
 </html>

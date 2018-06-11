@@ -9,23 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{userId}, #{userPwd}, #{userName}, #{gender}, #{hobby}, #{birth}, #{age}, #{phone}, #{address} ,#{introduce})
 	</insert>
 
-	 <select id="selectMember" parameterType="Member" resultType="Member">
+	 <select id="selectMember" resultType="Member">
 	select userId, userPwd, userName, gender, hobby, birth, age, address, phone, introduce
 	from members
 	where ( userId = #{userId} and userPwd = #{userPwd} )
 	</select>
-	<!--
-	<update id="##" parameterType="##">
-	UPDATE ## SET
-		## = #{##},
-		## = #{##}
-	where ## = #{##}
-	</update>
-	
-	<delete id="##" parameterType="##" >
-	Delete ## 
-	where ##=#{##}
-	</delete>
-
-	 -->
 </mapper>

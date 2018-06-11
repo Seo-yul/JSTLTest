@@ -12,7 +12,7 @@ introduce VARCHAR2(2000)
 )
 
 create table BOARD (
-	BOARD NUMBER PRIMARY KEY,
+	BOARDNUM NUMBER PRIMARY KEY,
 	USERID VARCHAR2(20) NOT NULL,
 	TITLE VARCHAR2(200) NOT NULL,
 	CONTENT VARCHAR2(2000) NOT NULL,
@@ -25,10 +25,11 @@ create table BOARD (
 CREATE SEQUENCE BOARDSEQ
 
 select * from MEMBERS
+select * from BOARD
 
 drop table MEMBERS
 drop table BOARD
 
-select userId, userPwd, userName, gender, hobby, birth, age, phone, address, introduce
-	from members
-	where ( userId = 'first' and userPwd = 'asdasd' )
+select BOARDNUM, USERID, TITLE, CONTENT, HITCOUNT, REGDATE 
+	from BOARD
+	ORDER BY BOARDNUM DESC

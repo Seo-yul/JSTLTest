@@ -101,6 +101,12 @@ public class MemberServlet extends HttpServlet {
 				dispatcher.forward(req, resp);
 			}
 		}
+		if(action.equals("logout")){
+			req.getSession().invalidate();
+			
+			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+			rd.forward(req, resp);
+		}
 		
 	}
 
