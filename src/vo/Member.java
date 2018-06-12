@@ -10,13 +10,19 @@ public class Member {
 	private String userName; // name
 	private String gender; // gender
 	private String hobby; // hobby
-	private Timestamp birth; // birthDay
+	private String birth; // birthDay
 	private String age; // age
 	private String address;
 	private String phone; // phoneNumber
 	private String introduce; // introduce
 
-	public Member(String userId, String userPwd, String userName, String gender, String hobby, Timestamp birth,
+	public Member(String userId, String userPwd) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+	}
+	
+	public Member(String userId, String userPwd, String userName, String gender, String hobby, String birth,
 			String age, String address, String phone, String introduce) {
 		super();
 		this.userId = userId;
@@ -25,6 +31,20 @@ public class Member {
 		this.gender = gender;
 		this.hobby = hobby;
 		this.birth = birth;
+		this.age = age;
+		this.address = address;
+		this.phone = phone;
+		this.introduce = introduce;
+	}
+	public Member(String userId, String userPwd, String userName, String gender, String hobby, Timestamp birth,
+			String age, String address, String phone, String introduce) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.hobby = hobby;
+		this.birth = birth.toString();
 		this.age = age;
 		this.address = address;
 		this.phone = phone;
@@ -71,11 +91,11 @@ public class Member {
 		this.hobby = hobby;
 	}
 
-	public Timestamp getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Timestamp birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

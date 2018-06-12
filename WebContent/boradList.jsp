@@ -9,7 +9,7 @@
 <script type="text/javascript">
 function viewFunc(seq) {
 	document.getElementById("seq").value=seq;
-	
+	document.form1.submit();
 }
 </script>
 
@@ -22,20 +22,30 @@ function viewFunc(seq) {
 		<h1>게시글이 없습니다.</h1>
 		</c:if>
 		<table>
+		<tr>
+		<td>글번호</td>
+		<td>아이디</td>
+		<td>제목1</td>  
+		<td>제목2</td>  
+		<td>조회수</td>
+		<td>작성일</td>
+		</tr>
 		<c:forEach varStatus="stat" var = "item" items="${bList}">
 		<tr>
-		<td>${item.boardNum}</td>
-		<td>${item.userId}</td>
-		<td><a href="board?action=boradRead&boardNum=${item.boardNum}">${item.title}</a></td>  
-		<td>${item.hitCount}</td>
-		<td>${item.regDate}</td>
+		
+		<td><c:out value="${item.boardNum}"></c:out></td>
+		<td><c:out value="${item.userId}"></c:out></td>
+		<td><a href="board?action=boradRead&boardNum=${item.boardNum}"><c:out value="${item.title}"></c:out></a></td>  
+		<td onclick="viewFunc('${item.boardNum}')"><c:out value="${item.title}"></c:out></td>  
+		<td><c:out value="${item.hitCount}"></c:out></td>
+		<td><c:out value="${item.regDate}"></c:out></td>
 		</tr>
 		</c:forEach>
 		</table>
-		
-		<form action="board">
-		<input type="hidden" value="boardView" name="action">
-		<input type="hidden" id="seq" value="" name="seq">
+		<c:out value="${count}"></c:out>  
+		<form action="board" name="form1">
+		<input type="hidden" value="boradRead" name="action">
+		<input type="hidden" id="seq" value="" name="boardNum">
 		</form>		
 </body>
 </html>

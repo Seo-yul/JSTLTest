@@ -21,15 +21,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
-	 <select id="selectBoard" resultType="Board">
+	 <select id="selectBoard"  resultType="Board">
 	select BOARDNUM, USERID, TITLE, CONTENT, HITCOUNT, REGDATE 
 	from BOARD
 	ORDER BY BOARDNUM DESC
 	</select>
 	
-		 <select id="selectBoardRead" resultType="Board">
-	select BOARDNUM, USERID, TITLE, CONTENT, HITCOUNT, REGDATE 
+	 <select id="selectBoardRead" parameterType="Board" resultType="Board">
+	select boardNum, userId, title, content, hitCount, regDate 
 	from BOARD
+	where BOARDNUM = #{boardNum}
+	</select>
+	<select id="countBoard" resultType="int">
+	select count(*) from BOARD
 	</select>
 	
 </mapper>

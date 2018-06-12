@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BoardDAO;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import sun.rmi.server.Dispatcher;
 import vo.Board;
 
@@ -37,8 +39,9 @@ public class BoardServlet extends HttpServlet {
 			/**
 			 * 게시글 목록 가져오기
 			 */
-
+			int count = dao.countBoard();
 			List<Board> blist = dao.selectBoard();
+			req.setAttribute("count", count);
 			req.setAttribute("bList", blist);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("boradList.jsp");
 			dispatcher.forward(req, resp);
@@ -69,35 +72,27 @@ public class BoardServlet extends HttpServlet {
 
 			System.out.println(vo.toString());
 			dao.insertBoard(vo);
+			
 
-			RequestDispatcher dispatcher = req.getRequestDispatcher("boradList.jsp");
-			dispatcher.forward(req, resp);
+			resp.sendRedirect("board?action=boardList");
+			//RequestDispatcher dispatcher = req.getRequestDispatcher("board?action=boardList");
+			//dispatcher.forward(req, resp);
 		} else	if (action.equals("boradRead")) {
 			String id = (String) req.getSession().getAttribute("loginId");
 			if (id == null) {
 				RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
 				dispatcher.forward(req, resp);
 			}
-			String boardNum = req.getParameter("boardNum");
+			int boardNum = Integer.parseInt(req.getParameter("boardNum"));
 
-			Board vo = dao.selectBoardRead();
-			
-			int RboardNum = vo.getBoardNum();
-			String Rid = vo.getUserId();
-			String Rtitle = vo.getUserId();
-			String Rcontent = vo.getContent();
-			int RhitCount = vo.getHitCount();
-			String RregDate = vo.getRegDate();
+			Board vo = new Board(boardNum, null, null, null, 0, null);
+					vo = dao.selectBoardRead(vo);
+					
+			System.out.println(vo.toString());
 
-			req.setAttribute("RboardNum", RboardNum);
-			req.setAttribute("Rid", Rid);
-			req.setAttribute("Rtitle", Rtitle);
-			req.setAttribute("Rcontent", Rcontent);
-			req.setAttribute("RboardNum", RboardNum);
-			req.setAttribute("RhitCount", RhitCount);
-			req.setAttribute("RregDate", RregDate);
+			req.setAttribute("BoardRead", vo);
 			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("boradList.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("boradRead.jsp");
 			dispatcher.forward(req, resp);
 		}
 

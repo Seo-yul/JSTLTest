@@ -42,7 +42,7 @@ public class MemberServlet extends HttpServlet {
 		for(int i=0; i<h.length; i++)
 			hobby += h[i] + " " ;
 		
-		Timestamp birth =Timestamp.valueOf(req.getParameter("birth"));
+		String birth =(req.getParameter("birth"));
 		String age = req.getParameter("age");
 		String phone = req.getParameter("phone1") + req.getParameter("phone2");
 		String address = req.getParameter("addr1") + req.getParameter("addr2");
@@ -52,6 +52,7 @@ public class MemberServlet extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		dao.insertMember(member);
 		
+		resp.sendRedirect("login.jsp");
 		}
 		
 		else if(action.equals("login")){
@@ -61,7 +62,7 @@ public class MemberServlet extends HttpServlet {
 			String userPwd = req.getParameter("userPw");
 			System.out.println(userId+" "+userPwd);
 			MemberDAO dao = new MemberDAO();
-			Member member = new Member(userId, userPwd, null, null, null, null, null, null, null, null);
+			Member member = new Member(userId, userPwd);
 			
 			member = dao.selectMember(member);
 			System.out.println(member.toString());

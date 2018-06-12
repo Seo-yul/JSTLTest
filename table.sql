@@ -30,6 +30,4 @@ select * from BOARD
 drop table MEMBERS
 drop table BOARD
 
-select BOARDNUM, USERID, TITLE, CONTENT, HITCOUNT, REGDATE 
-	from BOARD
-	ORDER BY BOARDNUM DESC
+select count(*) from BOARD
